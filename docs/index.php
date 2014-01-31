@@ -8,6 +8,13 @@ use Symfony\Component\Yaml\Yaml;
 $app = new Silex\Application();
 $app['debug'] = true;
 
+$base_config = array(
+	'title' => 'My Wallboard',
+	'users' => array(
+		'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
+	),
+);
+
 /* Lets start by trying to establish a generic config */
 try{
 	$app['config'] = Yaml::parse(__DIR__.'/../settings.yml');
@@ -15,6 +22,10 @@ try{
 	return new Response("Unable to parse the YAML string: ".$e->getMessage(),500);
 }
 
+if(!is_array($app['config']))
+{
+	$app['config'] = $base_config;
+}
 // $yaml = Yaml::dump($config);
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
@@ -31,10 +42,12 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 			// 'logout' => array('logout_path' => '/admin/logout'),
 			'http' => true,
 			// 'form' => array('login_path' => '/admin/login', 'check_path' => '/admin/login_check'),
-			'users' => array(
+			'users' => //array(
 				// raw password is foo
-				'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
-				),
+				$app['config']['users'],
+				// isset($app['config']['users']) ? $app['config']['users'] : array(),
+				// 'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg=='),
+				//),
 			),
 		),
 	));
