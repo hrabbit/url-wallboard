@@ -6,5 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Viocon' => array($vendorDir . '/usmanhalalit/viocon/src'),
     'Slim' => array($vendorDir . '/slim/slim', $vendorDir . '/petebrowne/slim-layout-view'),
+    'Pixie' => array($vendorDir . '/usmanhalalit/pixie/src'),
 );

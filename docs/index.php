@@ -2,6 +2,8 @@
 
 require '../vendor/autoload.php';
 
+use \Slim\Extras\Middleware\HttpBasicAuth;
+
 // Set the current mode
 $app = new \Slim\Slim(array(
     'mode'				=> 'development',
@@ -27,21 +29,48 @@ $app->configureMode('development', function () use ($app) {
     ));
 });
 
-$app->hook('authentication', function () use ($app) 
+new \Pixie\Connection('sqlite', array(
+                'driver'   => 'sqlite',
+                'database' => __DIR__.'/../hpbx.sqlite',
+                'prefix'   => '',
+            ), 'QB');
+
+
+// $authentication = function($app)
+// {
+// 	return function () use ($app) {
+// 		$app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username', 'password'));
+// 	};
+// };
+
+// $app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username2', 'password'));
+function authenticate()
 {
-	$app->response->headers->set('WWW-Authenticate', 'Basic realm="My Realm"');
-	$app->response->setStatus(401);
+// 	// use \Slim\Slim;
+// 	// $app = \Slim\
+// 	// $app = new \Slim\Slim();
+// 	// $app = \Slim\Environment::getInstance();
+// 	$app = \Slim\Slim::getInstance();
+// 	$auth = new \Slim\Extras\Middleware\HttpBasicAuth('username2', 'password');
+// 	$app->add($auth);
+// 	$auth->call();
+// 	// $app->add(new HttpBasicAuth('theUsername', 'thePassword'));
+// 	// $app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username', 'password'));
+// 	// \Slim\Extras\Middleware\HttpBasicAuth::call();
+// 	// echo '<pre>'; var_dump($app); exit;
+}
 
-	var_dump($app->request->headers);
-	echo 'Text to send if user hits Cancel button';
-});
+// $app->hook('authentication', function () use ($app) 
+// {
+// 	echo 'hook';
+// });
 
-$app->group('/admin', function () use ($app) 
+$app->group('/admin', 'authenticate', function () use ($app) 
 {
 
 	$app->get('/', function () use ($app)
 	{
-		$app->applyHook('authentication');
+		// $app->applyHook('authentication');
 		echo "admin";
 	});
 
@@ -49,19 +78,19 @@ $app->group('/admin', function () use ($app)
 	{
 		$app->get('/', function ()
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > widget";
 		});
 
-		$app->get('/add', function () 
+		$app->post('/add', function () 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > widget > add";
 		});
 
 		$app->get('/delete/(:id)', function ($id = null) 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > widget > delete ($id)";
 		});
 	});
@@ -70,25 +99,25 @@ $app->group('/admin', function () use ($app)
 	{
 		$app->get('/', function ()
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > option";
 		});
 
 		$app->get('/add', function () 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > option > add";
 		});
 
 		$app->get('/delete/(:id)', function ($id = null) 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > option > delete ($id)";
 		});
 
 		$app->get('/update/(:id)', function ($id = null) 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > option > update ($id)";
 		});
 	});
@@ -97,25 +126,25 @@ $app->group('/admin', function () use ($app)
 	{
 		$app->get('/', function ()
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > user";
 		});
 
 		$app->get('/add', function () 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > user > add";
 		});
 
 		$app->get('/delete/(:id)', function ($id = null) 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > user > delete ($id)";
 		});
 
 		$app->get('/update/(:id)', function ($id = null) 
 		{
-			$app->applyHook('authentication');
+			// $app->applyHook('authentication');
 			echo "admin > user > update ($id)";
 		});
 	});

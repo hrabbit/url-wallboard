@@ -1,6 +1,7 @@
 {
     "require": {
-        "slim/slim": "2.*",
+        "slim/slim": "*",
+        "usmanhalalit/pixie": "1.*@dev",
         "petebrowne/slim-layout-view": "0.1.*"
     }
 }
