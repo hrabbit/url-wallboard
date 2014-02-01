@@ -3,20 +3,20 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e634e1dacae33802f4f5a032c6eb7238",
+    "hash": "55fc0385a2d9be18a2fc97d3292ea000",
     "packages": [
         {
             "name": "petebrowne/slim-layout-view",
-            "version": "0.1.0",
+            "version": "0.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/petebrowne/slim-layout-view.git",
-                "reference": "81e8f0d1e49eb65df27ba85c797c908195390195"
+                "reference": "8e34ffb6292ac4b64ab8aade1932952fe3e69caa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/petebrowne/slim-layout-view/zipball/81e8f0d1e49eb65df27ba85c797c908195390195",
-                "reference": "81e8f0d1e49eb65df27ba85c797c908195390195",
+                "url": "https://api.github.com/repos/petebrowne/slim-layout-view/zipball/8e34ffb6292ac4b64ab8aade1932952fe3e69caa",
+                "reference": "8e34ffb6292ac4b64ab8aade1932952fe3e69caa",
                 "shasum": ""
             },
             "require": {
@@ -51,7 +51,7 @@
                 "slim",
                 "view"
             ],
-            "time": "2012-12-29 21:59:10"
+            "time": "2013-09-26 13:24:48"
         },
         {
             "name": "slim/slim",

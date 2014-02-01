@@ -1,0 +1,3 @@
+Frontend base template
+
+<?=$yield?>
