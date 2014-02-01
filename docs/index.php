@@ -2,8 +2,6 @@
 
 require '../vendor/autoload.php';
 
-use \Slim\Extras\Middleware\HttpBasicAuth;
-
 // Set the current mode
 $app = new \Slim\Slim(array(
     'mode'				=> 'development',
