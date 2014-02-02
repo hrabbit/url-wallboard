@@ -7,7 +7,7 @@ $app = new \Slim\Slim(array(
     'mode'				=> 'development',
     'view'				=> '\Slim\LayoutView',
     'templates.path'		=> '../templates',
-    'layout'				=> 'base.php',
+    'layout'				=> 'admin/base.php',
 ));
 
 
@@ -52,7 +52,6 @@ function authenticate()
 // 	$auth = new \Slim\Extras\Middleware\HttpBasicAuth('username2', 'password');
 // 	$app->add($auth);
 // 	$auth->call();
-//	$app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username', 'password'));
 // 	// echo '<pre>'; var_dump($app); exit;
 }
 
@@ -66,6 +65,7 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 	$app->view->setData('config', $config);
 	$app->get('/', function () use ($app, $config)
 	{
+		// $app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username', 'password'));
 		// $app->applyHook('authentication');
 		// var_dump($config);
 		$app->render('admin/index.php', array());
@@ -154,12 +154,12 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 });
 
 // Show the wallboard
-$app->get('/', function () use ($app) {
+$app->get('/', function () use ($app, $config) {
 	$app->render('index.php', array('page' => 'home', 'title' => 'Home', 'layout' => 'frontend.php'));
 	// echo "Main walllboard page";
 });
 
-$app->notFound(function () use ($app) {
+$app->notFound(function () use ($app, $config) {
     $app->render('404.html');
 });
 
