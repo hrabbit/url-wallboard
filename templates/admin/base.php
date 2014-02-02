@@ -30,7 +30,7 @@
             <ul class="nav navbar-nav navbar-right">
             <li><a href="/admin/widget">Queues</a></li>
               <!-- <li><a href="/admin/pages">Pages</a></li> -->
-              <li><a href="/admin/options">Options</a></li>
+              <li><a href="/admin/option">Options</a></li>
               <li><a href="/">View wallboard</a></li>
             </ul>
           </div>

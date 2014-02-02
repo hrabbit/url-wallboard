@@ -36,28 +36,23 @@ new \Pixie\Connection('sqlite', array(
                 'prefix'   => '',
             ), 'QB');
 
-QB::query('CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(30) UNIQUE, role VARCHAR(30), password VARCHAR(255))');
-QB::query('CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(30) UNIQUE, role VARCHAR(30), password VARCHAR(255))');
-QB::query('INSERT OR IGNORE INTO users (user,role,password) VALUES ("admin", "ROLE_ADMIN", "5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==")');
-QB::query('CREATE TABLE IF NOT EXISTS options( id INTEGER PRIMARY KEY AUTOINCREMENT, key VARCHAR(30) UNIQUE, value VARCHAR(255))');
-QB::query('INSERT OR IGNORE INTO options (key,value) VALUES ("title", "My wallboard")');
-QB::query('CREATE TABLE IF NOT EXISTS widgets( id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(30), url VARCHAR(255) UNIQUE)');
+require_once(__DIR__.'/../init.php');
 
 $query = QB::table('options');
 foreach($query->get() as $configs)
 	$config[$configs->key] = $configs->value;
 
-$app->add(new \Slim\Middleware\SessionCookie(array(
-    'expires' => '20 minutes',
-    'path' => '/admin',
-    'domain' => null,
-    'secure' => false,
-    'httponly' => false,
-    'name' => 'slim_session',
-    'secret' => '98kqwefgiuwoedklfv',
-    'cipher' => MCRYPT_RIJNDAEL_256,
-    'cipher_mode' => MCRYPT_MODE_CBC
-)));
+// $app->add(new \Slim\Middleware\SessionCookie(array(
+//     'expires' => '20 minutes',
+//     'path' => '/admin',
+//     'domain' => null,
+//     'secure' => false,
+//     'httponly' => false,
+//     'name' => 'slim_session',
+//     'secret' => '98kqwefgiuwoedklfv',
+//     'cipher' => MCRYPT_RIJNDAEL_256,
+//     'cipher_mode' => MCRYPT_MODE_CBC
+// )));
 
 // $app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username2', 'password'));
 function authenticate()
@@ -97,7 +92,6 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 		$app->post('/add', function () use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			var_dump($app->request->post());
 			QB::query(
 				'INSERT INTO widgets (title,url) VALUES (?, ?)', 
 				array($app->request->post('title'), $app->request->post('url'))
@@ -118,30 +112,45 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 		});
 	});
 
-	$app->group('/option', function () use ($app)
+	$app->group('/option', function () use ($app, $config)
 	{
-		$app->get('/', function ()
+		$app->get('/', function () use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			echo "admin > option";
+			$app->render('admin/option/index.php', array('options' => QB::table('options')->get()));
 		});
 
-		$app->get('/add', function () 
+		$app->post('/add', function () use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			echo "admin > option > add";
+			QB::query(
+				'INSERT INTO options (key, value) VALUES (?, ?)', 
+				array($app->request->post('key'), $app->request->post('value'))
+			);
+			$app->flash('notice', 'Option added');
+			$app->redirect('/admin/option');
 		});
 
-		$app->get('/delete/(:id)', function ($id = null) 
+		$app->get('/delete/(:id)', function ($id = null) use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			echo "admin > option > delete ($id)";
+			QB::query(
+				'DELETE FROM options WHERE id = ? LIMIT 1', 
+				array($id)
+			);
+			$app->flash('notice', 'Option deleted');
+			$app->redirect('/admin/option');
 		});
 
-		$app->get('/update/(:id)', function ($id = null) 
+		$app->post('/update/(:id)', function ($id = null) use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			echo "admin > option > update ($id)";
+			QB::query(
+				'UPDATE options SET value = ? WHERE id = ? LIMIT 1',
+				array($app->request->post('value'), $id)
+			);
+			$app->flash('notice', 'Option updated');
+			$app->redirect('/admin/option');
 		});
 	});
 
