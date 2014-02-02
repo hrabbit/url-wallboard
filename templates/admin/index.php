@@ -1,2 +1,3 @@
 Admin page
+
 <?=$config['title']?>

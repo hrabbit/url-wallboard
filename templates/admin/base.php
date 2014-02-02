@@ -17,28 +17,30 @@
       <![endif]-->
     </head>
     <body>
-    <div class="container">
-    <div class="row">&nbsp;</div>
+      <div class="container">
+        <div class="row">&nbsp;</div>
 
-    <nav class="navbar navbar-default navbar-inverse" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Brand</a>
+        <nav class="navbar navbar-default navbar-inverse" role="navigation">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#"><?=$config['title']?></a>
+            </div>
+          </div>
+          <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+            <li><a href="/admin/widget">Queues</a></li>
+              <!-- <li><a href="/admin/pages">Pages</a></li> -->
+              <li><a href="/admin/options">Options</a></li>
+              <li><a href="/">View wallboard</a></li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="row">
+          <div class="col-md-12">
+            <?=$yield?>
+          </div>
         </div>
-      </div>
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
-        </ul>
-      </div>
-    </nav>
-          
-    <div class="row">
-      <div class="col-md-12">
-        row
-      </div>
-    </div>
-      <?=$yield?>
       </div>
       <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
       <script src="https://code.jquery.com/jquery.js"></script>
