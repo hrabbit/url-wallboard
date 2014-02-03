@@ -31,7 +31,10 @@
 			<div class="title"><?=$widget->title?></div>
 			<div class="alert alert-success">
 				<!-- <p class="pull-left">Calls waiting</p> -->
-				<p class="pull-right"><?=$widget->calls_waiting?></p>
+				<div class="row">
+					<div class="col-md-8">Calls waiting</div>
+					<div class="col-md-4"><p class="pull-right"><?=$widget->calls_waiting?></p></div>
+				</div>
 			</div>
 	  		<?=print_r($widget,1)?>
 		</div>
