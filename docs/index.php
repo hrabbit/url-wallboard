@@ -36,7 +36,8 @@ new \Pixie\Connection('sqlite', array(
                 'prefix'   => '',
             ), 'QB');
 
-require_once(__DIR__.'/../init.php');
+require_once(__DIR__.'/../hpbx.php');
+$hpbx = new Hpbx();
 
 $query = QB::table('options');
 foreach($query->get() as $configs)
@@ -75,9 +76,7 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 	$app->view->setData('config', $config);
 	$app->get('/', function () use ($app, $config)
 	{
-		// $app->add(new \Slim\Extras\Middleware\HttpBasicAuth('username', 'password'));
 		// $app->applyHook('authentication');
-		// var_dump($config);
 		$app->render('admin/widget/index.php', array('widgets' => QB::table('widgets')->get()));
 	});
 
@@ -189,12 +188,18 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 });
 
 // Show the wallboard
-$app->get('/', function () use ($app, $config) {
+$app->get('/', function() use ($app, $config) {
 	$app->render('index.php', array('page' => 'home', 'title' => 'Home', 'layout' => 'frontend.php'));
-	// echo "Main walllboard page";
+	if(QB::query('SELECT count(*) AS records FROM pages')->get())
+		echo '';
+
 });
 
-$app->notFound(function () use ($app, $config) {
+$app->get('/pages/:id', function($id) use ($app, $config) {
+
+});
+
+$app->notFound(function() use ($app, $config) {
     $app->render('404.html');
 });
 
