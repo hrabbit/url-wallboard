@@ -77,7 +77,7 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 	$app->get('/', function () use ($app, $config)
 	{
 		// $app->applyHook('authentication');
-		$app->render('admin/widget/index.php', array('widgets' => QB::table('widgets')->get()));
+		$app->render('admin/widget.php', array('widgets' => QB::table('widgets')->get()));
 	});
 
 	$app->group('/widget', function () use ($app, $config)
@@ -85,7 +85,7 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 		$app->get('/', function () use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			$app->render('admin/widget/index.php', array('widgets' => QB::table('widgets')->get()));
+			$app->render('admin/widget.php', array('widgets' => QB::table('widgets')->get()));
 		});
 
 		$app->post('/add', function () use ($app, $config)
@@ -116,7 +116,7 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 		$app->get('/', function () use ($app, $config)
 		{
 			// $app->applyHook('authentication');
-			$app->render('admin/option/index.php', array('options' => QB::table('options')->get()));
+			$app->render('admin/option.php', array('options' => QB::table('options')->get()));
 		});
 
 		$app->post('/add', function () use ($app, $config)
@@ -154,10 +154,10 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 	});
 
 	// Allow adding extra pages to the rotation
-	// $app->group('/page', function() use ($app)
-	// {
+	$app->group('/page', function() use ($app)
+	{
 
-	// });
+	});
 
 	// $app->group('/user', function () use ($app)
 	// {
@@ -189,18 +189,28 @@ $app->group('/admin', 'authenticate', function () use ($app, $config)
 
 // Show the wallboard
 $app->get('/', function() use ($app, $config) {
-	$app->render('index.php', array('page' => 'home', 'title' => 'Home', 'layout' => 'frontend.php'));
-	if(QB::query('SELECT count(*) AS records FROM pages')->get())
-		echo '';
+
+	$widgets = array();
+	foreach(QB::table('widgets')->get() as $widget_key => $widget_value)
+	{
+		$widgets[$widget_key] = json_decode(\Hpbx::getWidget($widget_value->url));
+		$widgets[$widget_key]->title = !empty($widget_value->title) ? $widget_value->title : $widgets[$widget_key]->queue_name;
+	}
+
+	$app->render('index.php', array('layout' => false, 'config' => $config, 'widgets' => $widgets));
+	if($records = QB::query('SELECT count(*) AS records FROM pages LIMIT 1')->first())
+	{
+		// $records->records;
+	}
 
 });
 
-$app->get('/pages/:id', function($id) use ($app, $config) {
-
+$app->get('/page/:id', function($id) use ($app, $config) {
+	echo 'foo';
 });
 
 $app->notFound(function() use ($app, $config) {
-    $app->render('404.html');
+    $app->render('404.html', array('layout' => false));
 });
 
 $app->run();

@@ -1,3 +1,0 @@
-Admin page
-
-<?=$config['title']?>
