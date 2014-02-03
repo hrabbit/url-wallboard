@@ -12,6 +12,7 @@ QB::query('INSERT OR IGNORE INTO options (key,value) VALUES ("refresh_period", "
 QB::query('CREATE TABLE IF NOT EXISTS widgets( id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(30), url VARCHAR(255) UNIQUE)');
 
 // Return JSON response from URL
+/*
 function getWidget($url = string)
 {
 	$ch = curl_init(); 
@@ -28,3 +29,4 @@ function getWidget($url = string)
 	}
 	curl_close($ch);
 }
+*/
