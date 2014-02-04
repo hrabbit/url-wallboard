@@ -23,14 +23,14 @@
         color: <?=$config['widget_forground_color']?>;
         font-size: <?=$config['widget_font_size']?>px; 
       }
-      .alert { padding-top: 0; padding-bottom: 0;}
+      .alert { padding: 0;}
       .title { text-align: center; }
     </style>
     <div class="container-responsive">
       <?php foreach($widgets as $widget_key => $widget): ?>
         <div class="col-md-<?=12 / $config['widgets_per_row']?>">
           <div class="title"><?=$widget->title?></div>
-          <div class="col-md-12 alert alert-success">
+          <div class="col-md-12 alert alert-<?=$widget->calls_waiting >= $config['threshold_calls_waiting'] ? 'danger' : 'success'?>">
             <div class="col-md-8">Calls waiting</div>
             <div class="col-md-4"><p class="pull-right"><?=$widget->calls_waiting?></p></div>
           </div>
