@@ -16,10 +16,11 @@ class Hpbx
 		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("title", "My wallboard", 1)');
 		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widgets_per_row", "3", 1)');
 		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_font_size", "10", 1)');
-		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("refresh_period", "10", 1)');
+		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("refresh_interval", "10", 1)');
 		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("show_ip", "1", 1)');
 		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_background_color", "#000000", 1)');
 		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_forground_color", "#FFFFFF", 1)');
+		QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("threshold_wait_time", "60", 1)');
 		QB::query('CREATE TABLE IF NOT EXISTS widgets( id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(30), url VARCHAR(255) UNIQUE)');
 		QB::query('CREATE TABLE IF NOT EXISTS pages( id INTEGER PRIMARY KEY AUTOINCREMENT, url VARCHAR(255) UNIQUE)');
 	}
