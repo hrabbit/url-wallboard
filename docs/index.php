@@ -193,8 +193,11 @@ $app->get('/', function() use ($app, $config) {
 	$widgets = array();
 	foreach(QB::table('widgets')->get() as $widget_key => $widget_value)
 	{
-		$widgets[$widget_key] = json_decode(\Hpbx::getWidget($widget_value->url));
-		$widgets[$widget_key]->title = !empty($widget_value->title) ? $widget_value->title : $widgets[$widget_key]->queue_name;
+		if($widget_data = \Hpbx::getWidget($widget_value->url))
+		{
+			$widgets[$widget_key] = json_decode($widget_data);
+			$widgets[$widget_key]->title = !empty($widget_value->title) ? $widget_value->title : $widgets[$widget_key]->queue_name;
+		}
 	}
 
 	$app->render('index.php', array('layout' => false, 'config' => $config, 'widgets' => $widgets));
