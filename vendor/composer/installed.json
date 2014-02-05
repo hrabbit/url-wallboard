@@ -1,31 +1,33 @@
 [
     {
-        "name": "slim/slim",
-        "version": "2.4.0",
-        "version_normalized": "2.4.0.0",
+        "name": "pimple/pimple",
+        "version": "v1.1.1",
+        "version_normalized": "1.1.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/codeguy/Slim.git",
-            "reference": "ff7d7148848fa4f45712984d7b91ac3cbced586b"
+            "url": "https://github.com/fabpot/Pimple.git",
+            "reference": "2019c145fe393923f3441b23f29bbdfaa5c58c4d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/codeguy/Slim/zipball/ff7d7148848fa4f45712984d7b91ac3cbced586b",
-            "reference": "ff7d7148848fa4f45712984d7b91ac3cbced586b",
+            "url": "https://api.github.com/repos/fabpot/Pimple/zipball/2019c145fe393923f3441b23f29bbdfaa5c58c4d",
+            "reference": "2019c145fe393923f3441b23f29bbdfaa5c58c4d",
             "shasum": ""
         },
         "require": {
             "php": ">=5.3.0"
         },
-        "suggest": {
-            "ext-mcrypt": "Required for HTTP cookie encryption"
-        },
-        "time": "2013-11-29 20:33:36",
+        "time": "2013-11-22 08:30:29",
         "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
         "installation-source": "dist",
         "autoload": {
             "psr-0": {
-                "Slim": "."
+                "Pimple": "lib/"
             }
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -34,222 +36,109 @@
         ],
         "authors": [
             {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
             }
         ],
-        "description": "Slim Framework, a PHP micro framework",
-        "homepage": "http://github.com/codeguy/Slim",
-        "keywords": [
-            "microframework",
-            "rest",
-            "router"
-        ]
-    },
-    {
-        "name": "petebrowne/slim-layout-view",
-        "version": "0.2.1",
-        "version_normalized": "0.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/petebrowne/slim-layout-view.git",
-            "reference": "8e34ffb6292ac4b64ab8aade1932952fe3e69caa"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/petebrowne/slim-layout-view/zipball/8e34ffb6292ac4b64ab8aade1932952fe3e69caa",
-            "reference": "8e34ffb6292ac4b64ab8aade1932952fe3e69caa",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">= 5.3.0",
-            "slim/slim": "2.*"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2013-09-26 13:24:48",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Slim": "."
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Pete Browne",
-                "email": "me@petebrowne.com",
-                "homepage": "http://petebrowne.com",
-                "role": "Developer"
-            }
-        ],
-        "description": "A Custom View supporting Layouts for the Slim Framework.",
-        "homepage": "http://petebrowne.com",
-        "keywords": [
-            "layout",
-            "slim",
-            "view"
-        ]
-    },
-    {
-        "name": "slim/extras",
-        "version": "2.0.3",
-        "version_normalized": "2.0.3.0",
-        "target-dir": "Slim/Extras",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/codeguy/Slim-Extras.git",
-            "reference": "a022ed23dae94e164000acd891e3394d903f9623"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/codeguy/Slim-Extras/zipball/a022ed23dae94e164000acd891e3394d903f9623",
-            "reference": "a022ed23dae94e164000acd891e3394d903f9623",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0",
-            "slim/slim": ">=2.0.0"
-        },
-        "time": "2013-01-07 17:56:10",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Twig_Extensions_": "Views/Extension/",
-                "Slim\\Extras": "."
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Andrew Smith",
-                "email": "a.smith@silentworks.co.uk",
-                "homepage": "http://thoughts.silentworks.co.uk/"
-            },
-            {
-                "name": "Josh Lockhart",
-                "email": "info@joshlockhart.com",
-                "homepage": "http://www.joshlockhart.com/"
-            }
-        ],
-        "description": "Extras package for the Slim Framework",
-        "homepage": "http://github.com/codeguy/Slim-Extras",
-        "keywords": [
-            "extensions",
-            "middleware",
-            "templating"
-        ]
-    },
-    {
-        "name": "usmanhalalit/viocon",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/usmanhalalit/viocon.git",
-            "reference": "0878afee16f15355971fb95bf3c6d297aceff35d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/usmanhalalit/viocon/zipball/0878afee16f15355971fb95bf3c6d297aceff35d",
-            "reference": "0878afee16f15355971fb95bf3c6d297aceff35d",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "3.7.*"
-        },
-        "time": "2013-07-13 19:54:56",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Viocon": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Muhammad Usman",
-                "email": "hi@usman.it",
-                "role": "Developer"
-            }
-        ],
-        "description": "A simple and flexible Dependency Injection container for PHP.",
-        "homepage": "https://github.com/usmanhalalit/viocon",
+        "description": "Pimple is a simple Dependency Injection Container for PHP 5.3",
+        "homepage": "http://pimple.sensiolabs.org",
         "keywords": [
             "container",
-            "di",
-            "ioc",
-            "test"
+            "dependency injection"
         ]
     },
     {
-        "name": "usmanhalalit/pixie",
-        "version": "1.x-dev",
-        "version_normalized": "1.9999999.9999999.9999999-dev",
+        "name": "vlucas/bulletphp",
+        "version": "1.3.2",
+        "version_normalized": "1.3.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/usmanhalalit/pixie.git",
-            "reference": "4d9d33d0c55c838bc30e493342e48fb9dfc3825c"
+            "url": "https://github.com/vlucas/bulletphp.git",
+            "reference": "a0d120bb0c8692541d23cf064e520262c5775d68"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/usmanhalalit/pixie/zipball/4d9d33d0c55c838bc30e493342e48fb9dfc3825c",
-            "reference": "4d9d33d0c55c838bc30e493342e48fb9dfc3825c",
+            "url": "https://api.github.com/repos/vlucas/bulletphp/zipball/a0d120bb0c8692541d23cf064e520262c5775d68",
+            "reference": "a0d120bb0c8692541d23cf064e520262c5775d68",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.0",
-            "usmanhalalit/viocon": "1.0.*@dev"
+            "php": ">=5.3.2",
+            "pimple/pimple": "1.*"
         },
-        "require-dev": {
-            "mockery/mockery": "dev-master",
-            "phpunit/phpunit": "3.7.*"
+        "time": "2014-01-15 23:06:47",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Bullet": "src/"
+            }
         },
-        "time": "2013-09-27 13:18:41",
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD"
+        ],
+        "authors": [
+            {
+                "name": "Vance Lucas",
+                "email": "vance@vancelucas.com",
+                "homepage": "http://www.vancelucas.com"
+            }
+        ],
+        "description": "A heierarchical resource-oriented micro-framework built on nested closures instead of route-based callbacks",
+        "homepage": "http://bulletphp.com",
+        "keywords": [
+            "framework",
+            "micro",
+            "microframework",
+            "microphp",
+            "router",
+            "routing"
+        ]
+    },
+    {
+        "name": "gabordemooij/redbean",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gabordemooij/redbean.git",
+            "reference": "5fa2a4acc6e4d20f9149ea87b6e382461aac99a2"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gabordemooij/redbean/zipball/5fa2a4acc6e4d20f9149ea87b6e382461aac99a2",
+            "reference": "5fa2a4acc6e4d20f9149ea87b6e382461aac99a2",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "time": "2014-02-01 11:33:50",
         "type": "library",
         "installation-source": "source",
         "autoload": {
             "psr-0": {
-                "Pixie": "src/"
+                "RedBean_": ""
             }
         },
         "notification-url": "https://packagist.org/downloads/",
         "license": [
-            "MIT"
+            "BSD"
         ],
         "authors": [
             {
-                "name": "Muhammad Usman",
-                "email": "hi@usman.it",
+                "name": "Gabor de Mooij",
+                "email": "gabordemooij@gmail.com",
+                "homepage": "http://www.redbeanphp.com",
                 "role": "Developer"
             }
         ],
-        "description": "A lightweight, expressive, framework agnostic query builder for PHP.",
-        "homepage": "https://github.com/usmanhalalit/pixie",
+        "description": "Easy ORM for PHP",
+        "homepage": "http://github.com/gabordemooij/redbean",
         "keywords": [
-            "database",
-            "mysql",
-            "postgresql",
-            "query builder",
-            "sql",
-            "sqlite"
+            "Object Relational Mapping",
+            "orm"
         ]
     }
 ]

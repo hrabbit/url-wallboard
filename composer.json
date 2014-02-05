@@ -1,8 +1,6 @@
 {
     "require": {
-        "slim/slim": "2.*",
-        "slim/extras": "*",
-        "usmanhalalit/pixie": "1.*@dev",
-        "petebrowne/slim-layout-view": "0.2.*"
+        "vlucas/bulletphp": "*",
+	"gabordemooij/redbean": "dev-master"
     }
 }
