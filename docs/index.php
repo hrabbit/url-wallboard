@@ -17,7 +17,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
 ));
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/views',
+    'twig.path' => __DIR__.'/../views',
 ));
 
 // definitions
@@ -28,7 +28,7 @@ $app->get('/', function() {
 	return "frontend";
 });
 
-$app->error(function (\Exception $e, $code) {
+$app->error(function (\Exception $e, $code) use ($app){
     switch ($code) {
         case 404:
             $message = 'The requested page could not be found.';
@@ -37,6 +37,8 @@ $app->error(function (\Exception $e, $code) {
             $message = 'We are sorry, but something went terribly wrong.';
     }
 
+    if($app['debug'] == true)
+	    return $e->getMessage();
     return new Response($message);
 });
 

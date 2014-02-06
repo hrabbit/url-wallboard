@@ -4,6 +4,7 @@ namespace Hpbx;
 use Silex\Application;
 use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AdminControllerProvider implements ControllerProviderInterface
 {
@@ -18,10 +19,10 @@ class AdminControllerProvider implements ControllerProviderInterface
 
         $controllers->get('/widget', function (Application $app)
         {
-            // echo __DIR__; exit;
-            return $app['twig']->render('../../admin/hello.twig', array(
-                'name' => $name,
-            ));
+		// echo __DIR__; exit;
+		return $app['twig']->render('admin/widget.html.twig', array(
+			'name' => $name,
+		));
             // $app['db']->fetchAll('widget')->get();
             return ' in widget get';
         });
