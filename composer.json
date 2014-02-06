@@ -1,6 +1,10 @@
 {
     "require": {
-        "vlucas/bulletphp": "*",
-	"gabordemooij/redbean": "dev-master"
+	"silex/silex": "~1.1",
+	"twig/twig": ">=1.8,<2.0-dev",
+	"doctrine/dbal": "2.2.*"
+    },
+    "autoload": {
+	"psr-0": { "Hpbx": "src/" }
     }
 }
