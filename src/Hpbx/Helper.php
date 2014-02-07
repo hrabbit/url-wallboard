@@ -6,13 +6,13 @@ class Helper
 {
 	public function __construct()
 	{
-		self::db_exists();
+		if(!self::db_exists())
+			self::init_database();
 	}
 
 	public function db_exists()
 	{
-		if(!file_exists(__DIR__.'/../hpbx.sqlite'))
-			self::init_database();
+		return file_exists(__DIR__.'/../hpbx.sqlite');
 	}
 
 	public function init_database()
@@ -50,7 +50,7 @@ class Helper
 		curl_close($ch);
 		if(!self::isJson($output))
 			return false;
-		return $output;
+		return json_decode($output, true);
 	}
 
 	private static function isJson($string) {

@@ -1,6 +1,5 @@
-{% block widget %}
-<div class="col-md-{{ 12 / config.widgets_per_row | default(3) }}">
-	<div class="title">{{ widget.title }}</div>
+<div class="col-md-{{ 12 / app.config.widgets_per_row | default(3) }}">
+	<div class="title">{{ widget.title | default(widget.queue_name) }}</div>
 	<div class="col-md-12 alert alert-{{ widget.calls_waiting | default(0) >= config.threshold_calls_waiting | default(10) ? 'danger' : 'success' }}">
 		<div class="col-md-8">Calls waiting</div>
 		<div class="col-md-4"><p class="pull-right">{{ widget.calls_waiting | default(0) }}</p></div>
@@ -17,11 +16,10 @@
 		<div class="col-md-12 text-center">Agents</div>
 		<div class="col-md-12">
 			<ul class="list-unstyled">
-				{% for agent in agents | sort %}
+				{% for agent in widget.logged_in | sort %}
 					<li>{{ agent }}</li>
 				{% endfor %}
 			</ul>
 		</div>
 	</div>
 </div>
-{% endblock %}
