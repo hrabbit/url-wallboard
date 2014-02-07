@@ -1,0 +1,27 @@
+{% block widget %}
+<div class="col-md-{{ 12 / config.widgets_per_row | default(3) }}">
+	<div class="title">{{ widget.title }}</div>
+	<div class="col-md-12 alert alert-{{ widget.calls_waiting | default(0) >= config.threshold_calls_waiting | default(10) ? 'danger' : 'success' }}">
+		<div class="col-md-8">Calls waiting</div>
+		<div class="col-md-4"><p class="pull-right">{{ widget.calls_waiting | default(0) }}</p></div>
+	</div>
+	<div class="col-md-12 alert alert-{{ widget.average_wait_time_seconds | default(0) >= config.threshold_wait_time | default(60) ? 'danger' : 'success' }}">
+		<div class="col-md-8">Time</div>
+		<div class="col-md-4"><p class="pull-right">{{ widget.longest_wait_time | default('0:00.00') }}</p></div>
+	</div>
+	<div class="col-md-12 alert alert-warning">
+		<div class="col-md-8">Active calls</div>
+		<div class="col-md-4"><p class="pull-right">{{ widget.calls_active | default(0) }}</p></div>
+	</div>
+	<div class="col-md-12 alert alert-info">
+		<div class="col-md-12 text-center">Agents</div>
+		<div class="col-md-12">
+			<ul class="list-unstyled">
+				{% for agent in agents | sort %}
+					<li>{{ agent }}</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock %}

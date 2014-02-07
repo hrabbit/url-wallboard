@@ -21,11 +21,27 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 // definitions
-
 $app->mount('/admin', new Hpbx\AdminControllerProvider());
 
-$app->get('/', function() {
-	return "frontend";
+$app->get('/', function() use ($app) {
+	// Get widgets here
+	$widgets = array(
+		array(
+			'title' => 'A',
+			'calls_waiting' => 5,
+			'agents' => array(),
+		),
+		array(
+			'title' => 'B',
+			'calls_waiting' => 4,
+			'agents' => array(),
+		),
+	);
+
+	return $app['twig']->render('frontend.html.twig', array(
+		'widgets' => $widgets,
+		'config' => $config,
+	));
 });
 
 $app->error(function (\Exception $e, $code) use ($app){
