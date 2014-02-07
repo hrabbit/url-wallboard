@@ -1,22 +1,22 @@
 {
-    "name": "hrabbit/url-wallboard",
-    "description": "Provide a simple wallboard to display queue/call centre stats on a wall mounted display",
-    "keywords": ["voice","URLNetworks", "wallboard"],
-    "homepage": "http://github.com/hrabbit/url-wallboard",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Scott Horsley",
-            "email": "github.hrabbit@comsetic.net",
-            "role": "Developer"
-        }
-    ],
-    "require": {
-	"silex/silex": "~1.1",
-	"twig/twig": ">=1.8,<2.0-dev",
-	"usmanhalalit/pixie": "*"
-    },
-    "autoload": {
-	"psr-0": { "Hpbx": "src/" }
-    }
-}
+	"name": "hrabbit/url-wallboard",
+	"description": "Provide a simple wallboard to display queue/call centre stats on a wall mounted display",
+	"keywords": ["voice","URLNetworks", "wallboard"],
+	"homepage": "http://github.com/hrabbit/url-wallboard",
+	"license": "MIT",
+	"authors": [
+	{
+		"name": "Scott Horsley",
+		"email": "github.hrabbit@comsetic.net",
+		"role": "Developer"
+	}
+	],
+	"require": {
+		"silex/silex": "~1.1",
+		"twig/twig": ">=1.8,<2.0-dev",
+		"usmanhalalit/pixie": "*"
+		},
+		"autoload": {
+			"psr-0": { "Hpbx": "src/" }
+		}
+	}
