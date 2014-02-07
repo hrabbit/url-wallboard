@@ -9,10 +9,14 @@ This project was built behind the idea of creating a generic wallboard that end 
 * Use a directory that is just below the documentroot on your webserver.
 * Change to your working web directory. eg. cd /var/www (Debian/Ubuntu + Apache2)
 * Install composer
-** ```curl -sS https://getcomposer.org/installer | php```
+** ```
+curl -sS https://getcomposer.org/installer | php
+```
 * Create your composer configuration (composer.json)
-** ```{
+** ```
+{
     "require": {
         "monolog/monolog": "1.2.*"
     }
-}```
+}
+```
