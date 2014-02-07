@@ -8,6 +8,12 @@ This project was built behind the idea of creating a generic wallboard that end 
 
 Change to your working web directory. (Example based on Debian/Ubuntu + Apache2)
 
+Clone this repository to your web directory. (Parent of your web generally, not tested in a sub directory).
+
+```
+git clone git@github.com:hrabbit/url-wallboard.git
+```
+
 Install composer
 
 ```
