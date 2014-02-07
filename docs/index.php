@@ -20,6 +20,8 @@ new \Pixie\Connection('sqlite', array(
                 'prefix'   => '',
             ), 'QB');
 
+$hpbx = new \Hpbx\Helper();
+
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
