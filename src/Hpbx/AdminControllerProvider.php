@@ -6,6 +6,9 @@ use Silex\ControllerProviderInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+// Allow the use of PUT and DELETE
+Request::enableHttpMethodParameterOverride();
+
 class AdminControllerProvider implements ControllerProviderInterface
 {
     public function connect(Application $app)
@@ -19,26 +22,30 @@ class AdminControllerProvider implements ControllerProviderInterface
 
         $controllers->get('/widget', function (Application $app)
         {
-		// echo __DIR__; exit;
 		return $app['twig']->render('admin/widget.html.twig', array(
-			'name' => $name,
+			'widgets' => \QB::table('widgets')->get(),
 		));
-            // $app['db']->fetchAll('widget')->get();
-            return ' in widget get';
         });
 
-        $controllers->post('/widget', function (Application $app)
+        $controllers->post('/widget', function (Application $app, Request $request)
         {
-
+		\QB::query(
+			'INSERT INTO widgets (title,url) VALUES (?, ?)', 
+			array($request->get('title'), $request->get('url'))
+		);
+		return $app->redirect('/admin/widget');
         });
         
-        $controllers->delete('/widget', function (Application $app)
+        $controllers->delete('/widget/{id}', function (Application $app, Request $request, $id)
         {
-
+		\QB::query('DELETE FROM widgets WHERE id = ? LIMIT 1', array($id));
+		return $app->redirect('/admin/widget');
         });
         
         $controllers->get('/option', function (Application $app) {
-            return "Admin option > get"; // $app->redirect('/hello');
+		return $app['twig']->render('admin/option.html.twig', array(
+			'widgets' => \QB::table('options')->get(),
+		));
         });
 
         $controllers->post('/option', function (Application $app) {

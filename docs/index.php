@@ -1,20 +1,24 @@
 <?php
 
-// web/index.php
-
-use Symfony\Component\HttpFoundation\Response;
-
 require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
 $app['debug'] = true;
 
+/*
 $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_sqlite',
-        'path'     => __DIR__.'/app.db',
+        'path'     => __DIR__.'/../app.db',
     ),
 ));
+*/
+
+new \Pixie\Connection('sqlite', array(
+                'driver'   => 'sqlite',
+                'database' => __DIR__.'/../hpbx.sqlite',
+                'prefix'   => '',
+            ), 'QB');
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
