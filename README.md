@@ -23,7 +23,7 @@ Create your composer configuration (composer.json)
 ```
 {
     "require": {
-        "monolog/monolog": "1.2.*"
+        "hrabbit/url-wallboard": "*"
     }
 }
 ```
