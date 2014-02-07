@@ -8,22 +8,16 @@ This project was built behind the idea of creating a generic wallboard that end 
 
 Change to your working web directory. (Example based on Debian/Ubuntu + Apache2)
 
-```
-cd /var/www
-```
-
 Install composer
 
 ```
 curl -sS https://getcomposer.org/installer | php
 ```
 
-Create your composer configuration (composer.json)
+Install requirements
 
 ```
-{
-    "require": {
-        "hrabbit/url-wallboard": "*"
-    }
-}
+php composer.phar update
 ```
+
+You should be ready to roll. The 'web' directory is your DocumentRoot and therefore should be named to suite.
