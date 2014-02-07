@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ site.title | default('My Wallboard') }}</title>
+  <title>{{ app.config.title | default('My Wallboard') }}</title>
 
   <!-- Bootstrap -->
   <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +23,7 @@
         <nav class="navbar navbar-default navbar-inverse" role="navigation">
           <div class="container-fluid">
             <div class="navbar-header">
-              <a class="navbar-brand" href="">{{ site.title | default('My Wallboard') }}</a>
+              <a class="navbar-brand" href="">{{ app.config.title | default('My Wallboard') }}</a>
             </div>
           </div>
           <div class="collapse navbar-collapse">

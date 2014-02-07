@@ -12,26 +12,34 @@
 				<th>Options</th>
 			</tr>
 			<tr>
-				<form action="/admin/option/add" role="form" method="post">
+				<form action="/admin/option" role="form" method="post">
 					<td class="form-group"><input type="text" class="form-control" placeholder="Key" name="key"></td>
 					<td class="form-group"><input type="text" class="form-control" placeholder="Value" name="value"></td>
 					<td class="form-group"><button type="submit" class="btn btn-success">Add</button></td>
 				</form>
 			</tr>
-			<?php foreach($options as $option): ?>
+			{% for option in options %}
 			<tr>
-				<form method="post" role="form" action="/admin/option/update/<?=$option->id?>">
-					<td style="width: 200px"><?=preg_replace('/_/', ' ', $option->key)?></td>
-					<td class="form-group"><input type="text" class="form-control" name="value" value="<?=$option->value?>"></td>
-					<td style="width: 200px">
-						<button type="submit" class="btn btn-info">Update</button> 
-						<?php if(!$option->required): ?>
-						<a onClick="return confirm('Are you sure?')" class="btn btn-danger" href="/admin/option/delete/<?=$option->id?>">Delete</a>
-						<?php endif ?>
-					</td>
-				</form>
+				<td style="width: 200px">{{ option.key }}</td>
+				<td>
+					<form method="post" class="input-group" role="form" action="/admin/option/{{ option.id }}">
+						<input type="text" class="form-control" name="value" value="{{ option.value }}">
+						<input type="hidden" id="_method" name="_method" value="PUT" />
+						<span class="input-group-btn">
+							<button type="submit" class="btn btn-success">Update</button> 
+						</span>
+					</form>
+				</td>
+				<td style="width: 200px">
+					{% if not option.required %}
+					<form action="/admin/option/{{ option.id }}" role="form" method="post">
+						<input type="hidden" id="_method" name="_method" value="DELETE" />
+						<button onClick="return confirm('Are you sure?')" class="btn btn-danger">Delete</button>
+					</form>
+					{% endif %}
+				</td>
 			</tr>
-			<?php endforeach ?>
+			{% endfor %}
 		</table>
 	</div>
 </div>

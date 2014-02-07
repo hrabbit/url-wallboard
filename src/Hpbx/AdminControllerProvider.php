@@ -22,42 +22,52 @@ class AdminControllerProvider implements ControllerProviderInterface
 
         $controllers->get('/widget', function (Application $app)
         {
-		return $app['twig']->render('admin/widget.html.twig', array(
-			'widgets' => \QB::table('widgets')->get(),
-		));
-        });
+          return $app['twig']->render('admin/widget.html.twig', array(
+             'widgets' => \QB::table('widgets')->get(),
+             ));
+      });
 
         $controllers->post('/widget', function (Application $app, Request $request)
         {
-		\QB::query(
-			'INSERT INTO widgets (title,url) VALUES (?, ?)', 
-			array($request->get('title'), $request->get('url'))
-		);
-		return $app->redirect('/admin/widget');
-        });
+          \QB::query(
+             'INSERT INTO widgets (title,url) VALUES (?, ?)', 
+             array($request->get('title'), $request->get('url'))
+             );
+          return $app->redirect('/admin/widget');
+      });
         
         $controllers->delete('/widget/{id}', function (Application $app, Request $request, $id)
         {
-		\QB::query('DELETE FROM widgets WHERE id = ? LIMIT 1', array($id));
-		return $app->redirect('/admin/widget');
-        });
+          \QB::query('DELETE FROM widgets WHERE id = ? LIMIT 1', array($id));
+          return $app->redirect('/admin/widget');
+      });
         
         $controllers->get('/option', function (Application $app) {
-		return $app['twig']->render('admin/option.html.twig', array(
-			'widgets' => \QB::table('options')->get(),
-		));
+            return $app['twig']->render('admin/option.html.twig', array(
+            	'options' => \QB::table('options')->get(),
+                ));
         });
 
-        $controllers->post('/option', function (Application $app) {
-            return "Admin option > post"; // $app->redirect('/hello');
+        $controllers->post('/option', function (Application $app, Request $request) {
+            \QB::query(
+                'INSERT INTO options (key,value) VALUES (?, ?)', 
+                array($request->get('key'), $request->get('value'))
+                );
+            return $app->redirect('/admin/option');
         });
 
-        $controllers->put('/option', function (Application $app) {
-            return "Admin option > put"; // $app->redirect('/hello');
+        $controllers->put('/option/{id}', function (Application $app, Request $request, $id) {
+            \QB::query(
+                'UPDATE options SET value = ? WHERE id = ? LIMIT 1', 
+                array($request->get('value'), $id)
+                );
+            return $app->redirect('/admin/option');
         });
 
-        $controllers->delete('/option', function (Application $app) {
-            return "Admin option > delete"; // $app->redirect('/hello');
+        $controllers->delete('/option/{id}', function (Application $app, $id) {
+            \QB::query('DELETE FROM options WHERE id = ? LIMIT 1', array($id));
+            return $app->redirect('/admin/option');
+
         });
 
         return $controllers;
