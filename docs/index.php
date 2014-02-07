@@ -5,15 +5,6 @@ require_once __DIR__.'/../vendor/autoload.php';
 $app = new Silex\Application();
 $app['debug'] = true;
 
-/*
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
-    'db.options' => array(
-        'driver'   => 'pdo_sqlite',
-        'path'     => __DIR__.'/../app.db',
-    ),
-));
-*/
-
 new \Pixie\Connection('sqlite', array(
                 'driver'   => 'sqlite',
                 'database' => __DIR__.'/../hpbx.sqlite',
@@ -26,27 +17,25 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
 ));
 
+$config = array();
+foreach(\QB::table('options')->select(array('key', 'value'))->get() as $db_config)
+	$config[$db_config->key] = $db_config->value;
+$app['config'] = $config;
+
 // definitions
 $app->mount('/admin', new Hpbx\AdminControllerProvider());
 
 $app->get('/', function() use ($app) {
 	// Get widgets here
-	$widgets = array(
-		array(
-			'title' => 'A',
-			'calls_waiting' => 5,
-			'agents' => array(),
-		),
-		array(
-			'title' => 'B',
-			'calls_waiting' => 4,
-			'agents' => array(),
-		),
-	);
+	$widgets = \QB::table('widgets')->get();
+	foreach($widgets as $widget)
+	{
+		
+	}
 
 	return $app['twig']->render('frontend.html.twig', array(
 		'widgets' => $widgets,
-		'config' => $config,
+		// 'config' => $config,
 	));
 });
 
