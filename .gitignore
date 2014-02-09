@@ -1,5 +1,6 @@
 *.swp
 hpbx.sqlite
+hpbx.sqlite-journal
 vendor/*
 vendor
 composer.lock
