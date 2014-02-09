@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ config.title | default('My Wallboard') }}</title>
-<meta http-equiv="refresh" content="{{ config.refresh_interval | default(10) }}">
+<title>{{ app.config.title | default('My Wallboard') }}</title>
+<meta http-equiv="refresh" content="{{ app.config.refresh_interval | default(10) }}">
 <!-- Bootstrap -->
 <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
 
@@ -19,9 +19,9 @@
 <body>
 <style type="text/css">
 body { 
-	background-color: {{ config.widget_background_color | default('#000000') }};
-color: {{ config.widget_forground_color | default('#FFFFFF') }};
-       font-size: {{ config.widget_font_size|default(40) }}px; 
+	background-color: {{ app.config.widget_background_color | default('#000000') }};
+color: {{ app.config.widget_forground_color | default('#FFFFFF') }};
+       font-size: {{ app.config.widget_font_size|default(40) }}px; 
 }
 .alert { padding: 0;}
 .title { text-align: center; }
@@ -29,7 +29,7 @@ color: {{ config.widget_forground_color | default('#FFFFFF') }};
 <div class="container-responsive">
 {% for widget in widgets %}
 {% include 'widget.html.twig' with widget %}
-{% if loop.index is divisibleby( config.widgets_per_row | default(3) ) %}<div class="clearfix"></div>{% endif %}
+{% if loop.index is divisibleby( app.config.widgets_per_row | default(3) ) %}<div class="clearfix"></div>{% endif %}
 {% endfor %}
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

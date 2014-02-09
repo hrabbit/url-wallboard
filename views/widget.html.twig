@@ -1,10 +1,10 @@
 <div class="col-md-{{ 12 / app.config.widgets_per_row | default(3) }}">
-	<div class="title">{{ widget.title | default(widget.queue_name) }}</div>
-	<div class="col-md-12 alert alert-{{ widget.calls_waiting | default(0) >= config.threshold_calls_waiting | default(10) ? 'danger' : 'success' }}">
+	<div class="title">{% if widget.title %}{{ widget.title }}{% elseif widget.queue_name is defined %}{{ widget.queue_name }}{% elseif widget.skillset is defined %}{{ widget.skillset }}{% endif %}</div>
+	<div class="col-md-12 alert alert-{{ widget.calls_waiting | default(0) >= app.config.threshold_calls_waiting | default(10) ? 'danger' : 'success' }}">
 		<div class="col-md-8">Calls waiting</div>
 		<div class="col-md-4"><p class="pull-right">{{ widget.calls_waiting | default(0) }}</p></div>
 	</div>
-	<div class="col-md-12 alert alert-{{ widget.average_wait_time_seconds | default(0) >= config.threshold_wait_time | default(60) ? 'danger' : 'success' }}">
+	<div class="col-md-12 alert alert-{{ widget.average_wait_time_seconds | default(0) >= app.config.threshold_wait_time | default(60) ? 'danger' : 'success' }}">
 		<div class="col-md-8">Time</div>
 		<div class="col-md-4"><p class="pull-right">{{ widget.longest_wait_time | default('0:00.00') }}</p></div>
 	</div>
