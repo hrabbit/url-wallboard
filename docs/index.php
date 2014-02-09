@@ -1,5 +1,8 @@
 <?php
 
+if(!file_exists(__DIR__.'/../vendor/autoload.php'))
+	no_installation();
+
 require_once __DIR__.'/../vendor/autoload.php';
 
 $app = new Silex\Application();
@@ -55,3 +58,19 @@ $app->error(function (\Exception $e, $code) use ($app){
 });
 
 $app->run();
+
+function no_installation()
+{
+	echo <<<EOF
+<html>
+<body>
+<h1>Error</h1>
+<p>It appears that you haven't installed the required dependancies. Please follow the instructions below.</p>
+<p>Inside the root directory of this package, run the following commands;</p>
+<pre><code>curl -sS https://getcomposer.org/installer | php
+php composer.phar update</code></pre>
+<p>This will ensure all dependancies are installed correctly.</p>
+</body>
+</html>
+EOF;
+}
