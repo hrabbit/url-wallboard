@@ -25,6 +25,7 @@ class Helper
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_font_size", "40", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("refresh_interval", "10", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("show_ip", "1", 1)');
+		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("show_ip_timeout", "60", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_background_color", "#000000", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_forground_color", "#FFFFFF", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("threshold_wait_time", "60", 1)');
