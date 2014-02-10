@@ -18,7 +18,7 @@ class Helper
 	public function init_database()
 	{
 		\QB::query('CREATE TABLE IF NOT EXISTS users( id INTEGER PRIMARY KEY AUTOINCREMENT, user VARCHAR(30) UNIQUE, password VARCHAR(255))');
-		\QB::query('INSERT OR IGNORE INTO users (user,role,password) VALUES ("admin", "5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==")');
+		\QB::query('INSERT OR IGNORE INTO users (user,password) VALUES ("admin", "5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==")');
 		\QB::query('CREATE TABLE IF NOT EXISTS options( id INTEGER PRIMARY KEY AUTOINCREMENT, key VARCHAR(30) UNIQUE, value VARCHAR(255), required BOLEAN default 0)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("title", "My wallboard", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widgets_per_row", "3", 1)');
