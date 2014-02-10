@@ -30,8 +30,8 @@ class AdminControllerProvider implements ControllerProviderInterface
         $controllers->post('/widget', function (Application $app, Request $request)
         {
           \QB::query(
-             'INSERT INTO widgets (title,url) VALUES (?, ?)', 
-             array($request->get('title'), $request->get('url'))
+             'INSERT INTO widgets (url) VALUES (?)', 
+             array($request->get('url'))
              );
           return $app->redirect('/admin/widget');
       });

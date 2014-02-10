@@ -32,10 +32,7 @@ $app->get('/', function() use ($app) {
 	// Get widgets here
 	$widgets = array();
 	foreach(\QB::table('widgets')->get() as $db_widget_key => $db_widget_value)
-	{
 		$widgets[$db_widget_key] = \Hpbx\Helper::getWidget(trim($db_widget_value->url));
-		$widgets[$db_widget_key]['title'] = $db_widget_value->title;
-	}
 
 	return $app['twig']->render('frontend.html.twig', array(
 		'widgets' => $widgets,

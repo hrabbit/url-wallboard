@@ -22,7 +22,7 @@ class Helper
 		\QB::query('CREATE TABLE IF NOT EXISTS options( id INTEGER PRIMARY KEY AUTOINCREMENT, key VARCHAR(30) UNIQUE, value VARCHAR(255), required BOLEAN default 0)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("title", "My wallboard", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widgets_per_row", "3", 1)');
-		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_font_size", "10", 1)');
+		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_font_size", "40", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("refresh_interval", "10", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("show_ip", "1", 1)');
 		\QB::query('INSERT OR IGNORE INTO options (key,value,required) VALUES ("widget_background_color", "#000000", 1)');
